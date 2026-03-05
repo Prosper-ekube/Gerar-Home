@@ -18,7 +18,7 @@ const InfoBlock = ({ title, children }: InfoBlockProps) => {
 
 const ContactInfo = () => {
     return (
-        <div className='flex flex-col gap-8'>
+        <div className='flex flex-col gap-8 max-w-md pt-4 lg:pt-0'>
             <div className='flex flex-col gap-4'>
                 <h2 className='font-semibold text-[#EDEDED] text-xl md:text-2xl'>
                     Direct contact
@@ -30,17 +30,13 @@ const ContactInfo = () => {
 
             <InfoBlock title='Email'>
                 <a className='duration-200 hover:text-[#6F4CCF] transition-colors' href='mailto:sales@gerarsmarthomes.ng'>
-                    sales@gerarsmarthomes.ng
-                </a>
-                <br />
-                <a className='duration-200 hover:text-[#6F4CCF] transition-colors' href='mailto:support@gerarsmarthomes.ng'>
-                    support@gerarsmarthomes.ng
-                </a>
+                    gerarsmarthomes@gmail.com
+                </a>                            
             </InfoBlock>
 
             <InfoBlock title='Phone'>
                 <a className='duration-200 hover:text-[#6F4CCF] transition-colors' href='tel:+2348008000000'>
-                    +234 (0) 800 000 0000
+                    +234 70 5523 9376
                 </a>
                 <p className='text-[#A8A8A8] text-xs md:text-sm mt-1'>
                     Mon - Fri, 9:00am - 6:00pm WAT
