@@ -1,39 +1,54 @@
-import smart_living_room from '../../../assets/images/smart_living_room.png'
-import Button from '../../../components/ui/Button'
+import smart_living_room from '../../../assets/images/smart_living_room.jpg'
+import smart_living_room_desktop from '../../../assets/images/smart_living_room_desktop.jpg'
 
 const Hero: React.FC = () => {
+    const buttonPrimary = 'bg-[#6f4ccf] duration-1000 ease-in-out font-semibold hover:-translate-y-1 hover:bg-[#5a3ca8] px-8 py-4 rounded-full shadow-[#6f4ccf]/40 shadow-lg text-white transition-all'
+    const buttonSecondary = 'bg-transparent duration-1000 ease-in-out border-2 border-white font-semibold hover:-translate-y-1 hover:bg-white hover:text-[#0a0a0a] px-8 py-4 rounded-full text-white transition-all'
+
+    const statTitle = 'font-bold text-4xl text-[#6f4ccf]'
+    const statText = 'text-[#a8a8a8] text-sm'
+
     return (
-        <section className='bg-[#0F1115] pt-24 md:pt-36 px-4 md:px-12 md:pt-32 lg:pb-12'>
-            <div className='grid grid-cols-1 lg:grid-cols-2 items-center gap-3 md:gap-5 max-w-7xl mx-auto'>
-                {/* Left Content */}
-                <div className='flex flex-col gap-6 md:gap-8 lg:gap-6 text-[#A8A8A8] text-center lg:text-left'>
-                    <div className='flex flex-col gap-3 lg:gap-6'>
-                        <p className='font-medium text-xs md:text-base tracking-wider uppercase'>Orvibo-Powered Smart Living</p>
-                        <h2 className='font-bold mx-auto text-[#EDEDED] text-2xl md:text-4xl lg:text-5xl w-[240px] md:w-[360px] lg:w-full'>Intelligent homes for the modern Nigerian lifestyle.</h2>
-                        <p className='mx-auto text-xs md:text-lg w-[280px] md:w-[420px] lg:w-full'> Gerar Smart Homes designs and deploys integrated smart home solutions, powered by Orvibo technology,
-                            for discerning homes and premium developments across Nigeria.
-                        </p>
+        <section className='bg-[#0a0a0a] lg:px-8 overflow-hidden pb-20 pt-32 md:pt-44 px-6 relative'>
+            <div className='absolute bg-[#6f4ccf]/20 blur-3xl h-[800px] rounded-full right-0 top-0 translate-x-1/2 -translate-y-1/2 w-[800px]' />
+            <div className='grid gap-12 items-center lg:grid-cols-2 max-w-6xl mx-auto relative z-10'>
+                <div className='space-y-6'>
+                    <span className='bg-[#6f4ccf]/20 font-semibold inline-block px-6 py-2 rounded-full text-[#6f4ccf] text-sm'>ORVIBO-POWERED SMART LIVING</span>
+                    <h1 className='font-bold leading-tight text-5xl text-white lg:text-6xl'>
+                        Intelligent Homes for the Modern
+                        <span className='bg-clip-text bg-gradient-to-r from-[#6f4ccf] text-transparent to-[#5a3ca8]'>{' '}Nigerian Lifestyle</span>
+                    </h1>
+                    <p className='leading-relaxed text-[#a8a8a8] text-lg'>
+                        Gerar Smart Home designs and deploys integrated smart home solutions, powered by Orvibo technology,
+                        for discerning homes and premium developments across Nigeria.
+                    </p>
+                    <div className='flex flex-wrap gap-4'>
+                        <a className={buttonPrimary} href='#products'>Explore Products</a>
+                        <a className={buttonSecondary} href='#how-it-works'>How It Works</a>
                     </div>
-                    {/* CTA */}
-                    <div className='flex flex-col gap-5 min-w-[1360px]:flex-row min-w-[1360px]:items-center lg:gap-4'>
-                        <Button className='w-full lg:w-auto' type='button'>View Products</Button>
-                        <p className='text-xs md:text-lg text-[#A8A8A8]'>Experience reliable, enterprise-grade automation.</p>
-                    </div>
-                    {/* Certifications */}
-                    <div className='flex flex-col gap-1 md:gap-2 lg:gap-1 min-w-[1360px]:flex-row min-w-[1360px]:items-center text-left'>
-                        <div className='flex gap-1 lg:gap-2 text-xs md:text-lg'>
-                            <span className='font-semibold text-[#EDEDED]'>Orvibo</span>
-                            <span className='text-[#A8A8A8]'>certified design & installation</span>
+                    <div className='flex flex-wrap gap-8 pt-8'>
+                        <div>
+                            <h3 className={statTitle}>50K+</h3>
+                            <p className={statText}>Happy Customers</p>
                         </div>
-                        <p className='text-[#A8A8A8]'>Serving Lagos, Abuja, Port Harcourt & nationwide projects</p>
+                        <div>
+                            <h3 className={statTitle}>100+</h3>
+                            <p className={statText}>Smart Devices</p>
+                        </div>
+                        <div>
+                            <h3 className={statTitle}>4.9★</h3>
+                            <p className={statText}>Average Rating</p>
+                        </div>
                     </div>
                 </div>
-                {/* Right Content */}
                 <div className='relative'>
-                    <div className='overflow-hidden mb-4 md:mb-16 lg:mb-0 rounded-lg'>
-                        <img alt='Luxury smart home living room with ambient lighting' className='h-[220px] w-full object-cover sm:h-[320px] md:h-auto'
-                            src={smart_living_room}
-                        />
+                    <div className='group h-[400px] overflow-hidden relative rounded-3xl w-full'>
+                        <picture>
+                            <source media='(min-width: 768px)' srcSet={smart_living_room_desktop} />
+                            <img alt='Smart Home Interior' className='h-full object-cover transition-transform duration-700 w-full group-hover:scale-105'
+                                decoding='async' loading='lazy' src={smart_living_room} />
+                        </picture>                        
+                        <div className='absolute bg-gradient-to-t from-[#0a0a0a] inset-0 to-transparent via-transparent' />
                     </div>
                 </div>
             </div>

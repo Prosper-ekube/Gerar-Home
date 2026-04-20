@@ -1,82 +1,62 @@
 import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
 import { HiMenu, HiX } from 'react-icons/hi'
+import { NavLink } from 'react-router-dom'
 
 type NavItemProps = {
     children: string
-    to: string
     onClick?: () => void
+    to: string
 }
 
-const NavItem = ({ children, to, onClick }: NavItemProps) => {
+const NavItem = ({ children, onClick, to }: NavItemProps) => {
+    const baseClasses = 'duration-1000 text-4xl md:text-base transition-colors'
+    const activeClasses = 'text-white'
+    const inactiveClasses = 'hover:text-gray-300 text-[#A8A8A8]'
+
     return (
         <li>
-            <NavLink className={({ isActive }) => ['duration-1000 text-4xl md:text-base transition-colors', isActive ? 'text-[#EDEDED]' :
-                'text-[#A8A8A8] hover:text-gray-300'].join(' ')} to={to} onClick={onClick}
-            >
+            <NavLink className={({ isActive }) => [baseClasses, isActive ? activeClasses : inactiveClasses].join(' ')} onClick={onClick} to={to}>
                 {children}
             </NavLink>
         </li>
     )
 }
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto'
-
-    return () => {
-        document.body.style.overflow = 'auto'
-    }
-}, [isOpen])
+        document.body.style.overflow = isOpen ? 'hidden' : 'auto'
+        return () => {
+            document.body.style.overflow = 'auto'
+        }
+    }, [isOpen])
 
     return (
-        <nav className='fixed left-0 top-0 z-50 w-full bg-[#0F1115] px-6 py-4 md:py-6 md:px-12'>
-            <div className='mx-auto flex max-w-7xl items-center justify-between'>
+        <nav className='bg-[#0f0f1a] fixed left-0 px-6 lg:px-8 py-4 md:py-6 top-0 w-full z-50'>
+            <div className='flex items-center justify-between mx-auto max-w-6xl'>
                 {/* Logo */}
                 <div className='flex flex-col gap-1 md:gap-2'>
-                    <h1 className='text-xl font-bold text-[#EDEDED] md:text-4xl'>
-                        Gerar Smart Homes
-                    </h1>
-                    <p className='text-xs text-[#A8A8A8] md:text-sm'>
-                        Official Orvibo Partner
-                    </p>
+                    <h1 className='font-bold md:text-4xl text-xl text-white'>Gerar Smart Homes</h1>
+                    <p className='text-[#A8A8A8] text-sm'>Official Orvibo Partner</p>
                 </div>
-
-                {/* Desktop Links */}
-                <ul className='hidden gap-8 lg:flex'>
+                {/* Desktop Menu */}
+                <ul className='lg:flex hidden gap-8'>
                     <NavItem to='/'>Home</NavItem>
                     <NavItem to='/product'>Products</NavItem>
                     <NavItem to='/contact'>Contact</NavItem>
                 </ul>
-
                 {/* Mobile Toggle */}
-                <button
-                    className='text-[#EDEDED] lg:hidden'
-                    onClick={() => setIsOpen(prev => !prev)}
-                >
+                <button className='lg:hidden text-white' onClick={() => setIsOpen(prev => !prev)}>
                     {isOpen ? <HiX size={26} /> : <HiMenu size={26} />}
                 </button>
             </div>
-
             {/* Mobile Menu */}
-            <div
-                className={[
-                    'overflow-hidden transition-all duration-1000 lg:hidden',
-                    isOpen ? 'h-screen opacity-100' : 'h-0 opacity-0'
-                ].join(' ')}
-            >
+            <div className={['duration-1000 h-0 lg:hidden opacity-0 overflow-hidden transition-all', isOpen && 'h-screen opacity-100'].join(' ')}>
                 <ul className='flex flex-col gap-8 pl-2 pt-6'>
-                    <NavItem onClick={() => setIsOpen(false)} to='/'>
-                        Home
-                    </NavItem>
-                    <NavItem onClick={() => setIsOpen(false)} to='/product'>
-                        Products
-                    </NavItem>
-                    <NavItem onClick={() => setIsOpen(false)} to='/contact'>
-                        Contact
-                    </NavItem>
+                    <NavItem onClick={() => setIsOpen(false)} to='/'>Home</NavItem>
+                    <NavItem onClick={() => setIsOpen(false)} to='/product'>Products</NavItem>
+                    <NavItem onClick={() => setIsOpen(false)} to='/contact'>Contact</NavItem>
                 </ul>
             </div>
         </nav>

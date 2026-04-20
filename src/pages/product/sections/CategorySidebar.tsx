@@ -19,7 +19,7 @@ const CategorySidebar = () => {
     const [activeCategory, setActiveCategory] = useState('central-control')
 
     return (
-        <aside className='hidden lg:block w-64 flex-shrink-0'>
+        <aside className='hidden lg:block w-52 md:w-64 flex-shrink-0'>
             <div className='sticky top-32'>
                 <h3 className='font-semibold mb-6 text-[#EDEDED] text-lg'>Categories</h3>
                 <ul className='flex flex-col gap-2'>

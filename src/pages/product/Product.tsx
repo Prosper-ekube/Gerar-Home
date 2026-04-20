@@ -1,20 +1,21 @@
-import Navbar from '../../components/layout/Navbar'
-import CategorySidebar from './sections/CategorySidebar'
-import ProductCatalogue from './sections/ProductCatalogue'
+import { useState } from 'react'
 import Footer from '../../components/layout/Footer'
+import Navbar from '../../components/layout/Navbar'
 
-const Product = () => {
+import Hero from './sections/Hero'
+import ProductGrid from './sections/ProductGrid'
+import Recommendations from './sections/Recommendations'
+
+const Product: React.FC = () => {
+    const [searchQuery, setSearchQuery] = useState('')
     return (
         <>
             <Navbar />
-            <main>
-                <div className='bg-[#0F1115] min-h-screen pt-24 md:pt-36 px-4 md:px-12'>
-                    <div className='flex gap-8 max-w-7xl mx-auto'>
-                        <CategorySidebar />
-                        <ProductCatalogue />
-                    </div>
-                </div>
-            </main >
+            <main className='bg-[#0a0a0a]'>
+                <Hero onSearch={setSearchQuery} />
+                <ProductGrid searchQuery={searchQuery} />
+                <Recommendations />
+            </main>
             <Footer />
         </>
     )
