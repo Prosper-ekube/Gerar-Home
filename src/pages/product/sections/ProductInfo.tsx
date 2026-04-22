@@ -28,7 +28,7 @@ const ProductInfo: React.FC<Props> = ({ product }) => {
             </p>
 
             <ProductSpecs specs={product.specs}/>
-            <ProductActions />
+            <ProductActions product={product}/>
 
             <p className='border-t border-[#2a2a2a] pt-5 text-[#555] text-[13px]'>
                 Distributed in Nigeria exclusively by Gerar Smart Homes as an official Orvibo partner.
