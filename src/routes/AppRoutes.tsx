@@ -5,17 +5,19 @@ import ProductDetails from '../pages/product/sections/ProductDetails'
 import PaymentSuccess from '../pages/PaymentSuccess'
 import Contact from "../pages/contact/Contact"
 import AdminProducts from '../pages/admin/AdminProducts'
+import PaymentFailed from '../pages/PaymentFailed'
 
 const AppRoutes = () => {
     return (
-        <BrowserRouter>            
+        <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/product' element={<Product />} />
-                <Route path='/products/:id' element={<ProductDetails />} />
-                <Route path='/payment-success' element={<PaymentSuccess />} />
+                <Route path='/products/:id' element={<ProductDetails />} />            
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/admin/products' element={<AdminProducts />} />
+                <Route path='/payment-success' element={<PaymentSuccess />} />
+                <Route path='/payment-failed' element={<PaymentFailed />} />
             </Routes>
         </BrowserRouter>
     )
