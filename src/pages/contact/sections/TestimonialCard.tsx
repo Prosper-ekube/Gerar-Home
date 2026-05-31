@@ -11,7 +11,7 @@ const GridIcon = () => {
 
 const TestimonialCard = () => {
     return (
-        <div className='bg-[#111] border border-[#2a2a2a] overflow-hidden p-7 relative rounded-2xl'>
+        <div className='bg-[#111] border border-[#2a2a2a] overflow-hidden p-4 md:p-6 relative rounded-2xl'>
             <div className='absolute bg-[#6f4ccf]/20 blur-3xl h-[800px] bottom-[-40px] h-[220px] pointer-events-none right-[-40px] w-[220px]' />
 
             <div className='flex gap-2 items-center mb-5'>
