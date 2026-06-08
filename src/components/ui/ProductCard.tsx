@@ -55,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </Link>
 
             {/* ACTIONS */}
-            <div className='px-6 pb-6 mt-auto flex gap-3'>
+            <div className='px-4 pb-6 mt-auto flex gap-3'>
                 <button
                     disabled={!product.in_stock}
                     onClick={(e) => {
