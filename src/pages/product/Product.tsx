@@ -11,7 +11,7 @@ const Product: React.FC = () => {
     return (
         <>
             <Navbar />
-            <main className='bg-[#0a0a0a]'>
+            <main className='bg-[#0a0a0a]' id='products'>
                 <Hero onSearch={setSearchQuery} />
                 <ProductGrid searchQuery={searchQuery} />
                 <Recommendations />

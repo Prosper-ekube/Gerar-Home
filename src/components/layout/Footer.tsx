@@ -1,5 +1,6 @@
 // Footer.tsx (Modular Version)
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MdEmail, MdPhone } from 'react-icons/md';
 
 import GH_Logo from '../../assets/images/GH_Logo.png'
@@ -13,20 +14,24 @@ interface FooterLink {
 interface FooterSection {
     title: string;
     links: FooterLink[];
+    onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }
 
 const Footer: React.FC = () => {
+
+    const navigate = useNavigate()
+
     const solutions: FooterLink[] = [
-        { label: 'Smart Central Control Panels', href: '#' },
-        { label: 'Smart Lighting', href: '#' },
-        { label: 'Smart Switches', href: '#' },
-        { label: 'Home & Security Sensors', href: '#' }
+        { label: 'Smart Central Control Panels', href: '/product#smart_panels' },
+        { label: 'Smart Lighting', href: '/product#smart_lighting' },
+        { label: 'Smart Switches', href: '/product#smart_switches' },
+        { label: 'Home & Security Sensors', href: '/product#home_security' }
     ];
 
     const company: FooterLink[] = [
-        { label: 'About Us', href: '#' },
-        { label: 'Partnership', href: '#' },
-        { label: 'Contact', href: '#' },
+        { label: 'About Us', href: '/'},
+        { label: 'Partnership', href: 'https://url-shortener.me/NLCE' },
+        { label: 'Contact', href: '/contact' },
     ];
 
     const legal: FooterLink[] = [
@@ -35,7 +40,12 @@ const Footer: React.FC = () => {
         { label: 'Cookies Settings', href: '#' },
     ];
 
-    const currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();    
+    
+    const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        navigate(href);
+    };
 
     return (
         <footer className="bg-[#0a0a0a] border-t border-[#2a2a2a]">
@@ -69,7 +79,7 @@ const Footer: React.FC = () => {
                         <ul className="space-y-3">
                             <li>
                                 <a
-                                    href="mailto:info@gerarsmarthomes.ng"
+                                    href="mailto:gerarsmarthomes@gmail.com"
                                     className="text-white text-sm hover:text-white hover:-translate-y-1 duration-1000 ease-in-out flex items-center gap-2 group"
                                 >
                                     <MdEmail className="w-4 h-4 flex-shrink-0 text-[#a8a8a8] group-hover:text-white transition-colors duration-200" />
@@ -78,7 +88,7 @@ const Footer: React.FC = () => {
                             </li>
                             <li>
                                 <a
-                                    href="tel:+2348000000000"
+                                    href="tel:+2347055239376"
                                     className="text-white text-sm hover:text-white hover:-translate-y-1 duration-1000 ease-in-out flex items-center gap-2 group"
                                 >
                                     <MdPhone className="w-4 h-4 flex-shrink-0 text-[#a8a8a8] group-hover:text-white hover:-translate-y-1 duration-1000 ease-in-out" />
@@ -92,7 +102,7 @@ const Footer: React.FC = () => {
                     <FooterSection title="Solutions" links={solutions} />
 
                     {/* Column 4: Company */}
-                    <FooterSection title="Company" links={company} />
+                    <FooterSection title="Company" links={company} onLinkClick={handleNavigation} />
 
                 </div>
 
@@ -125,9 +135,10 @@ const Footer: React.FC = () => {
 };
 
 // Reusable Footer Section Component
-const FooterSection: React.FC<{ title: string; links: FooterLink[] }> = ({
+const FooterSection: React.FC<FooterSection> = ({
     title,
-    links
+    links,
+    onLinkClick
 }) => {
     return (
         <div>
@@ -135,16 +146,27 @@ const FooterSection: React.FC<{ title: string; links: FooterLink[] }> = ({
                 {title}
             </h3>
             <ul className="space-y-2">
-                {links.map((link) => (
-                    <li key={link.label}>
-                        <a
-                            href={link.href}
-                            className="inline-block text-white text-sm transform transition-transform duration-1000 ease-in-out hover:-translate-y-1"
-                        >
-                            {link.label}
-                        </a>
-                    </li>
-                ))}
+                {links.map((link) => {
+                    const isExternal = link.href.startsWith('http://') || link.href.startsWith('https://');
+
+                    return (
+                        <li key={link.label}>
+                            <a
+                                href={link.href}
+                                onClick={(e) => {
+                                    if (!isExternal) {
+                                        onLinkClick?.(e, link.href);
+                                    }
+                                }}
+                                target={isExternal ? "_blank" : undefined}
+                                rel={isExternal ? "noopener noreferrer" : undefined}
+                                className="inline-block text-white text-sm transform transition-transform duration-300 ease-in-out hover:-translate-y-1"
+                            >
+                                {link.label}
+                            </a>
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );

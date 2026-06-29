@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import GH_Logo from '../../assets/images/GH_Logo.png'
 
 type NavItemProps = {
-    children: string
+    children: React.ReactNode
     onClick?: () => void
     to: string
 }
@@ -38,10 +38,12 @@ const Navbar: React.FC = () => {
         <nav className='bg-[#0f0f1a] fixed left-0 px-6 lg:px-8 py-4 md:py-6 top-0 w-full z-50'>
             <div className='flex items-center justify-between mx-auto max-w-7xl'>
                 {/* Logo */}
-                <div className='flex flex-col items-center '>
-                    <img className='w-10' src={GH_Logo} />
-                    <h1 className='font-bold md:text-sm text-xs text-white'>Gerar Smart Homes</h1>
-                </div>
+                <NavItem to='/'>
+                    <div className='flex flex-col items-center '>
+                        <img className='w-10' src={GH_Logo} />
+                        <h1 className='font-bold md:text-sm text-xs text-white'>Gerar Smart Homes</h1>
+                    </div>
+                </NavItem>
                 {/* Desktop Menu */}
                 <ul className='lg:flex hidden gap-8'>
                     <NavItem to='/'>Home</NavItem>
