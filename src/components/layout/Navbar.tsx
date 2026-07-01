@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { HiMenu, HiX } from 'react-icons/hi'
 import { NavLink } from 'react-router-dom'
 
-import GH_Logo from '../../assets/images/GH_Logo.png'
+import Gerar_Nest_Logo from '../../assets/images/Gerar-Nest-Logo.png'
 
 type NavItemProps = {
     children: React.ReactNode
@@ -16,7 +16,7 @@ const NavItem = ({ children, onClick, to }: NavItemProps) => {
     const inactiveClasses = 'hover:text-gray-300 text-[#A8A8A8]'
 
     return (
-        <li>
+        <li className='list-none'>
             <NavLink className={({ isActive }) => [baseClasses, isActive ? activeClasses : inactiveClasses].join(' ')} onClick={onClick} to={to}>
                 {children}
             </NavLink>
@@ -39,10 +39,7 @@ const Navbar: React.FC = () => {
             <div className='flex items-center justify-between mx-auto max-w-7xl'>
                 {/* Logo */}
                 <NavItem to='/'>
-                    <div className='flex flex-col items-center '>
-                        <img className='w-10' src={GH_Logo} />
-                        <h1 className='font-bold md:text-sm text-xs text-white'>Gerar Smart Homes</h1>
-                    </div>
+                    <img className='w-40' src={Gerar_Nest_Logo} />
                 </NavItem>
                 {/* Desktop Menu */}
                 <ul className='lg:flex hidden gap-8'>

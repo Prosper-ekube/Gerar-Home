@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdEmail, MdPhone } from 'react-icons/md';
 
-import GH_Logo from '../../assets/images/GH_Logo.png'
+import Gerar_Nest_Logo from '../../assets/images/Gerar-Nest-Logo.png'
 
 // Types
 interface FooterLink {
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
     ];
 
     const company: FooterLink[] = [
-        { label: 'About Us', href: '/'},
+        { label: 'About Us', href: '/' },
         { label: 'Partnership', href: 'https://url-shortener.me/NLCE' },
         { label: 'Contact', href: '/contact' },
     ];
@@ -40,8 +40,8 @@ const Footer: React.FC = () => {
         { label: 'Cookies Settings', href: '#' },
     ];
 
-    const currentYear = new Date().getFullYear();    
-    
+    const currentYear = new Date().getFullYear();
+
     const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
         navigate(href);
@@ -57,12 +57,9 @@ const Footer: React.FC = () => {
                     {/* Column 1: Brand Identity */}
                     <div className="lg:col-span-1">
                         <div className='flex'>
-                            <div className='flex flex-col items-center '>
-                                <img className='w-10' src={GH_Logo} />
-                                <h1 className='font-bold md:text-sm text-xs text-white'>Gerar Smart Homes</h1>
-                            </div>
-                        </div>                    
-                        <p className="text-[#a8a8a8] text-sm leading-relaxed mt-8 mb-3">
+                            <img className='w-40' src={Gerar_Nest_Logo} />
+                        </div>
+                        <p className="text-[#a8a8a8] text-sm leading-relaxed mt-4 mb-3">
                             Premium smart home design, installation and support for high-end
                             residences and developments across Nigeria.
                         </p>
@@ -79,11 +76,11 @@ const Footer: React.FC = () => {
                         <ul className="space-y-3">
                             <li>
                                 <a
-                                    href="mailto:gerarsmarthomes@gmail.com"
+                                    href="mailto:gerarnest@gmail.com"
                                     className="text-white text-sm hover:text-white hover:-translate-y-1 duration-1000 ease-in-out flex items-center gap-2 group"
                                 >
                                     <MdEmail className="w-4 h-4 flex-shrink-0 text-[#a8a8a8] group-hover:text-white transition-colors duration-200" />
-                                    gerarsmarthomes@gmail.com
+                                    gerarnest@gmail.com
                                 </a>
                             </li>
                             <li>
@@ -109,7 +106,7 @@ const Footer: React.FC = () => {
                 {/* Copyright & Legal */}
                 <div className="border-t border-[#2a2a2a] mt-10 pt-6 flex flex-col lg:flex-row justify-between items-center gap-4">
                     <p className="text-white text-sm">
-                        &copy; {currentYear} Gerar Smart Homes. All rights reserved.
+                        &copy; {currentYear} GerarNest. All rights reserved.
                     </p>
 
                     <div className="flex items-center gap-4 text-sm">

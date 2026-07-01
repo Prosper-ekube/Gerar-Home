@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
                         <span className='bg-clip-text bg-gradient-to-r from-[#6f4ccf] text-transparent to-[#5a3ca8]'>{' '}Nigerian Lifestyle</span>
                     </h1>
                     <p className='leading-relaxed text-[#a8a8a8] text-lg'>
-                        Gerar Smart Home designs and deploys integrated smart home solutions, powered by Orvibo technology,
+                        GerarNest designs and deploys integrated smart home solutions, powered by Orvibo technology,
                         for discerning homes and premium developments across Nigeria.
                     </p>
                     <div className='flex flex-wrap gap-4'>

@@ -47,7 +47,7 @@ const Features: React.FC = () => {
         <section className='bg-[#0f0f1a] lg:px-8 pb-20 pt-10 px-6 lg:pt-20' id='features'>
             <div className='max-w-6xl mx-auto'>                
                 <div className='mb-16 text-center'>
-                    <span className='font-semibold text-[#6f4ccf] text-base tracking-wider uppercase'>Why Choose Gerar Smart Homes</span>
+                    <span className='font-semibold text-[#6f4ccf] text-base tracking-wider uppercase'>Why Choose GerarNest</span>
                     <h2 className='font-bold mt-4 mb-4 text-4xl lg:text-4xl text-white'>Smart Living Made <span className='text-[#6f4ccf]'>Simple</span></h2>
                     <p className='max-w-2xl mx-auto text-[#a8a8a8] text-base'>
                         Experience the perfect blend of innovation and simplicity with features designed for modern living

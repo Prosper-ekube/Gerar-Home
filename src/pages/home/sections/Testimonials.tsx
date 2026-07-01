@@ -7,7 +7,7 @@ const Testimonials: React.FC = () => {
             name: 'Nancy Ejiofor',
             rating: 5,
             role: 'Homeowner, Enugu',
-            text: 'Gerar Homes has completely transformed how I live. The voice control is incredibly responsive and the energy savings are real. My electricity bill dropped by 30% in the first month!'
+            text: 'GerarNest has completely transformed how I live. The voice control is incredibly responsive and the energy savings are real. My electricity bill dropped by 30% in the first month!'
         },
         {
             initials: 'BR',
