@@ -9,9 +9,9 @@ const INFO_ITEMS: InfoItem[] = [
         value: (
             <a
                 className='block break-all hover:text-white text-[#a8a8a8] transition-colors duration-200'
-                href='mailto:gerarsmarthomes@gmail.com'
+                href='mailto:gerarnest@gmail.com'
             >
-                gerarsmarthomes@gmail.com
+                gerarnest@gmail.com
             </a>
         )
     },

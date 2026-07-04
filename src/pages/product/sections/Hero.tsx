@@ -21,7 +21,7 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
 
             <div className='relative z-10 max-w-6xl mx-auto text-center'>
                 <h1 className='text-6xl lg:text-6xl font-bold text-white mb-4'>
-                    Gerar Smart Homes
+                    GerarNest
                 </h1>
 
                 <p className='text-xl text-[#a8a8a8] mb-8'>
@@ -35,7 +35,7 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
                         <input
                             className='w-full pl-12 pr-4 py-3 rounded-full bg-[#1a1a2e] text-white placeholder:text-[#a8a8a8] focus:outline-none focus:ring-2 focus:ring-[#6f4ccf] border border-[#6f4ccf]/20'
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder='Search on Gerar Homes'
+                            placeholder='Search on GerarNest'
                             type='text'
                             value={searchQuery}
                         />

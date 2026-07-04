@@ -1,8 +1,9 @@
 // Footer.tsx (Modular Version)
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MdEmail, MdPhone } from 'react-icons/md';
 
-import GH_Logo from '../../assets/images/GH_Logo.png'
+import Gerar_Nest_Logo from '../../assets/images/Gerar-Nest-Logo.png'
 
 // Types
 interface FooterLink {
@@ -13,20 +14,24 @@ interface FooterLink {
 interface FooterSection {
     title: string;
     links: FooterLink[];
+    onLinkClick?: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 }
 
 const Footer: React.FC = () => {
+
+    const navigate = useNavigate()
+
     const solutions: FooterLink[] = [
-        { label: 'Smart Central Control Panels', href: '#' },
-        { label: 'Smart Lighting', href: '#' },
-        { label: 'Smart Switches', href: '#' },
-        { label: 'Home & Security Sensors', href: '#' }
+        { label: 'Smart Central Control Panels', href: '/product#smart_panels' },
+        { label: 'Smart Lighting', href: '/product#smart_lighting' },
+        { label: 'Smart Switches', href: '/product#smart_switches' },
+        { label: 'Home & Security Sensors', href: '/product#home_security' }
     ];
 
     const company: FooterLink[] = [
-        { label: 'About Us', href: '#' },
-        { label: 'Partnership', href: '#' },
-        { label: 'Contact', href: '#' },
+        { label: 'About Us', href: '/' },
+        { label: 'Partnership', href: 'https://url-shortener.me/NLCE' },
+        { label: 'Contact', href: '/contact' },
     ];
 
     const legal: FooterLink[] = [
@@ -36,6 +41,11 @@ const Footer: React.FC = () => {
     ];
 
     const currentYear = new Date().getFullYear();
+
+    const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        navigate(href);
+    };
 
     return (
         <footer className="bg-[#0a0a0a] border-t border-[#2a2a2a]">
@@ -47,12 +57,9 @@ const Footer: React.FC = () => {
                     {/* Column 1: Brand Identity */}
                     <div className="lg:col-span-1">
                         <div className='flex'>
-                            <div className='flex flex-col items-center '>
-                                <img className='w-10' src={GH_Logo} />
-                                <h1 className='font-bold md:text-sm text-xs text-white'>Gerar Smart Homes</h1>
-                            </div>
-                        </div>                    
-                        <p className="text-[#a8a8a8] text-sm leading-relaxed mt-8 mb-3">
+                            <img className='w-40' src={Gerar_Nest_Logo} />
+                        </div>
+                        <p className="text-[#a8a8a8] text-sm leading-relaxed mt-4 mb-3">
                             Premium smart home design, installation and support for high-end
                             residences and developments across Nigeria.
                         </p>
@@ -69,16 +76,16 @@ const Footer: React.FC = () => {
                         <ul className="space-y-3">
                             <li>
                                 <a
-                                    href="mailto:info@gerarsmarthomes.ng"
+                                    href="mailto:gerarnest@gmail.com"
                                     className="text-white text-sm hover:text-white hover:-translate-y-1 duration-1000 ease-in-out flex items-center gap-2 group"
                                 >
                                     <MdEmail className="w-4 h-4 flex-shrink-0 text-[#a8a8a8] group-hover:text-white transition-colors duration-200" />
-                                    gerarsmarthomes@gmail.com
+                                    gerarnest@gmail.com
                                 </a>
                             </li>
                             <li>
                                 <a
-                                    href="tel:+2348000000000"
+                                    href="tel:+2347055239376"
                                     className="text-white text-sm hover:text-white hover:-translate-y-1 duration-1000 ease-in-out flex items-center gap-2 group"
                                 >
                                     <MdPhone className="w-4 h-4 flex-shrink-0 text-[#a8a8a8] group-hover:text-white hover:-translate-y-1 duration-1000 ease-in-out" />
@@ -92,14 +99,14 @@ const Footer: React.FC = () => {
                     <FooterSection title="Solutions" links={solutions} />
 
                     {/* Column 4: Company */}
-                    <FooterSection title="Company" links={company} />
+                    <FooterSection title="Company" links={company} onLinkClick={handleNavigation} />
 
                 </div>
 
                 {/* Copyright & Legal */}
                 <div className="border-t border-[#2a2a2a] mt-10 pt-6 flex flex-col lg:flex-row justify-between items-center gap-4">
                     <p className="text-white text-sm">
-                        &copy; {currentYear} Gerar Smart Homes. All rights reserved.
+                        &copy; {currentYear} GerarNest. All rights reserved.
                     </p>
 
                     <div className="flex items-center gap-4 text-sm">
@@ -125,9 +132,10 @@ const Footer: React.FC = () => {
 };
 
 // Reusable Footer Section Component
-const FooterSection: React.FC<{ title: string; links: FooterLink[] }> = ({
+const FooterSection: React.FC<FooterSection> = ({
     title,
-    links
+    links,
+    onLinkClick
 }) => {
     return (
         <div>
@@ -135,16 +143,27 @@ const FooterSection: React.FC<{ title: string; links: FooterLink[] }> = ({
                 {title}
             </h3>
             <ul className="space-y-2">
-                {links.map((link) => (
-                    <li key={link.label}>
-                        <a
-                            href={link.href}
-                            className="inline-block text-white text-sm transform transition-transform duration-1000 ease-in-out hover:-translate-y-1"
-                        >
-                            {link.label}
-                        </a>
-                    </li>
-                ))}
+                {links.map((link) => {
+                    const isExternal = link.href.startsWith('http://') || link.href.startsWith('https://');
+
+                    return (
+                        <li key={link.label}>
+                            <a
+                                href={link.href}
+                                onClick={(e) => {
+                                    if (!isExternal) {
+                                        onLinkClick?.(e, link.href);
+                                    }
+                                }}
+                                target={isExternal ? "_blank" : undefined}
+                                rel={isExternal ? "noopener noreferrer" : undefined}
+                                className="inline-block text-white text-sm transform transition-transform duration-300 ease-in-out hover:-translate-y-1"
+                            >
+                                {link.label}
+                            </a>
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );

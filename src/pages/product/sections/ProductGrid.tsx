@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import useProducts from '../../../hooks/useProducts'
 import ProductSection from '../../../components/ui/ProductSection'
 
@@ -24,11 +25,21 @@ const categories: { name: string; value: CategoryValue }[] = [
 const ProductGrid: React.FC<ProductGridProps> = ({ searchQuery }) => {
     const { products, loading } = useProducts()
 
+    const location = useLocation()
+
     const [selectedCategory, setSelectedCategory] =
         useState<CategoryValue>('all')
 
     const [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = 6
+
+    useEffect(() => {
+        const hash = window.location.hash.replace('#', '') as CategoryValue
+        if (categories.some(cat => cat.value === hash)) {
+            setSelectedCategory(hash)
+            setCurrentPage(1)
+        }
+    }, [location?.hash])
 
     if (loading) return <p className='text-white'>Loading...</p>
 
@@ -50,6 +61,14 @@ const ProductGrid: React.FC<ProductGridProps> = ({ searchQuery }) => {
         startIndex + itemsPerPage
     )
 
+    const handleCategoryChange = (category: CategoryValue) => {
+        setSelectedCategory(category)
+        setCurrentPage(1)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        // Update URL hash
+        window.history.pushState(null, '', `#${category}`)
+    }
+
     return (
         <section className='py-20 px-6 lg:px-8 bg-[#0a0a0a] overflow-hidden'>
             <div className='max-w-6xl mx-auto'>
@@ -67,8 +86,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ searchQuery }) => {
                                     <li key={cat.value}>
                                         <button
                                             onClick={() => {
-                                                setSelectedCategory(cat.value)
-                                                setCurrentPage(1)
+                                                handleCategoryChange(cat.value)                                                
                                             }}
                                             className={`w-full flex items-center gap-3 p-2 rounded-lg transition-colors ${selectedCategory === cat.value
                                                     ? 'bg-[#6f4ccf]/20 text-[#6f4ccf]'
