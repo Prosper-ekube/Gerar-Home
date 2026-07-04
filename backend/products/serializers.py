@@ -29,9 +29,13 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def get_rating(self, obj):
         reviews = obj.reviews_list.all()
-        if not reviews:
-            return 0
-        return sum(r.rating for r in reviews) / reviews.count()
+
+        if not reviews.exists():
+            return 0.0
+
+        average = sum(review.rating for review in reviews) / reviews.count()
+
+        return round(average, 1)
 
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
