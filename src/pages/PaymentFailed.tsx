@@ -29,7 +29,7 @@ const PaymentFailed: React.FC = () => {
         const verifyPayment = async () => {
             try {
                 const res = await fetch(
-                    `http://127.0.0.1:8000/api/payments/verify/?reference=${reference}`
+                    `${import.meta.env.VITE_API_URL}/api/payments/verify/?reference=${reference}`
                 )
 
                 const data = await res.json()

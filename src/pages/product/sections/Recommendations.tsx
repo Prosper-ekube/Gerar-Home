@@ -10,7 +10,7 @@ const Recommendations: React.FC = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await fetch('http://127.0.0.1:8000/api/products/')
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products/`)
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch products')

@@ -30,7 +30,7 @@ const ProductActions = ({ product }: { product: Product }) => {
             console.log('CHECKOUT START');
 
             // 1. Create order
-            const orderRes = await fetch('http://127.0.0.1:8000/api/orders/', {
+            const orderRes = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ const ProductActions = ({ product }: { product: Product }) => {
             }
 
             // 2. Initialize payment
-            const payRes = await fetch('http://127.0.0.1:8000/api/payments/init/', {
+            const payRes = await fetch(`${import.meta.env.VITE_API_URL}/api/payments/init/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
